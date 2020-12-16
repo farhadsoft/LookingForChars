@@ -12,8 +12,25 @@ namespace LookingForChars
         /// <returns>The number of occurrences of all characters.</returns>
         public static int GetCharsCount(string str, char[] chars)
         {
-            // TODO #1. Implement the method using "for" statement.
-            throw new NotImplementedException();
+            if (str is null || chars is null)
+            {
+                throw new ArgumentNullException($"");
+            }
+
+            int result = 0;
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                foreach (var ch in chars)
+                {
+                    if (ch == str[i])
+                    {
+                        result++;
+                    }
+                }
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -26,8 +43,33 @@ namespace LookingForChars
         /// <returns>The number of occurrences of all characters within the specified range of elements in the <see cref="string"/>.</returns>
         public static int GetCharsCount(string str, char[] chars, int startIndex, int endIndex)
         {
-            // TODO #2. Implement the method using "while" statement.
-            throw new NotImplementedException();
+            if (str is null || chars is null)
+            {
+                throw new ArgumentNullException($"");
+            }
+
+            if (startIndex < 0 || endIndex <= 0 || endIndex >= str.Length)
+            {
+                throw new ArgumentOutOfRangeException($"");
+            }
+
+            int result = 0;
+            int i = startIndex;
+
+            while (endIndex >= i)
+            {
+                foreach (var ch in chars)
+                {
+                    if (ch == str[i])
+                    {
+                        result++;
+                    }
+                }
+
+                i++;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -41,8 +83,36 @@ namespace LookingForChars
         /// <returns>The limited number of occurrences of characters to search for within the specified range of elements in the <see cref="string"/>.</returns>
         public static int GetCharsCount(string str, char[] chars, int startIndex, int endIndex, int limit)
         {
-            // TODO #3. Implement the method using "do..while" statements.
-            throw new NotImplementedException();
+            if (str is null || chars is null)
+            {
+                throw new ArgumentNullException($"");
+            }
+
+            if (startIndex < 0 || endIndex <= 0 || endIndex >= str.Length || limit <= 0)
+            {
+                throw new ArgumentOutOfRangeException($"");
+            }
+
+            int result = 0;
+            int i = startIndex;
+            int count = 0;
+
+            do
+            {
+                for (int j = 0; j < chars.Length; j++)
+                {
+                    if (chars[j] == str[i] && count < limit)
+                    {
+                        result++;
+                        count++;
+                    }
+                }
+
+                i++;
+            }
+            while (endIndex >= i);
+
+            return result;
         }
     }
 }
